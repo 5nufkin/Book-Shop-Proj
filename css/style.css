@@ -1,0 +1,79 @@
+* {
+  box-sizing: border-box;
+}
+
+/* :root{
+  --background-primary: #c5ae96;
+  --background-secondary: #b78d6a;
+  --accent-primary: #334b33;
+  --accent-secondary: #7f886e;
+  --text-primary: #fff;
+  --neutral-primary: #d5d5d5;
+  --neutral-secondary: #555;
+} */
+
+body {
+  background-color: #eee;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+}
+
+h1 {
+  font-size: 4rem;
+  margin-block: 1.5rem .5rem;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.books-table {
+  border-collapse: collapse;
+  /* width: min(90%, 700px); */
+  margin: 4rem auto;
+}
+
+/* .books-table th:first-child{
+  width: 250px;
+}
+.books-table th:last-child{
+  width: 200px;
+} */
+
+.books-table th,
+.books-table td{
+  border: 1px solid #333;
+  padding: .35rem .75rem;
+  text-align: start;
+}
+
+.btn {
+  border-radius: .5rem;
+  padding: .25rem;
+  width: 4.5rem;
+  text-align: center;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-read{
+  background-color: lightskyblue;
+}
+
+.btn-update{
+  background-color: rgb(73, 197, 191);
+}
+
+.btn-delete{
+  background: lightcoral;
+}
+
+th{
+  background-color: #ccc;
+}
+
+tr:nth-child(even){
+  background-color: #ddd;
+}
