@@ -5,12 +5,12 @@ function onInit() {
 }
 
 function renderBooks() {
-  const books = getBooksToDisplay()
+  const books = getBooks()
   var strHTMLs = books.map(book => `<tr>
         <td>${book.title}</td>
         <td>${book.price}</td>
         <td>
-          <button class="btn btn-read">Read</button>
+          <button class="btn btn-read" onclick="onSeeDetails('${book.id}')">Read</button>
           <button class="btn btn-update" onclick="onUpdateBook('${book.id}')">Update</button>
           <button class="btn btn-delete" onclick="onRemoveBook('${book.id}')">Delete</button>
         </td>
@@ -36,3 +36,35 @@ function onAddBook() {
   addBook(bookName, bookPrice)
   renderBooks()
 }
+
+function onSeeDetails(bookId) {
+  const bookDetails = getBook(bookId)
+  const modal = document.querySelector('.modal ')
+  console.log(modal)
+  modal.innerHTML = ` <button class="modal-close" onclick="onCloseModal()">x</button>
+                      <div class="grid-container">
+                      <div class="img-container"><img class="modal-img" src="${bookDetails.imgUrl}"></div>
+                      <h1 class="modal-title">${bookDetails.title}</h1>
+                      <h2 class="modal-price">Price: <span class="font-weight-normal">${bookDetails.price}</span>$</h2>
+                      <h3 class="modal-id">id: <span class="font-weight-normal">${bookDetails.id}</span></h3>
+                      </div>`
+  modal.showModal()
+}
+
+function onCloseModal() {
+  document.querySelector('.modal').close()
+}
+
+// function onSeeDetails(bookId) {
+//   const bookDetails = getBook(bookId)
+//   const modal = document.querySelector('.modal ')
+//   console.log(modal)
+//   modal.innerHTML = ` <button class="modal-close" onclick="onCloseModal()">x</button>
+//                       <div class="grid-container">
+//                       <div class="img-container"><img class="modal-img" src="${bookDetails.imgUrl}"></div>
+//                       <h1 class="modal-title">${bookDetails.title}</h1>
+//                       <h2 class="modal-price">Price: ${bookDetails.price}$</h2>
+//                       <h3 class="modal-id">id: ${bookDetails.id}</h3>
+//                       </div>`
+//   modal.showModal()
+// }

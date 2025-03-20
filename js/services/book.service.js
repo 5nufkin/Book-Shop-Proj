@@ -2,13 +2,17 @@
 
 //Model
 const gBooks = [
-  { id: getRandomId(6), title: 'The adventures of Lori Ipsi', price: 120, imgUrl: 'lori-ipsi.jpg' },
-  { id: getRandomId(6), title: 'World Atlas', price: 300, imgUrl: 'atlas.jpg' },
-  { id: getRandomId(6), title: 'Zobar the Greek', price: 87, imgUrl: 'zobar.jpg' }
+  { id: getRandomId(6), title: 'The adventures of Lori Ipsi', price: 120, imgUrl: 'img/blankBook.jpg' },
+  { id: getRandomId(6), title: 'World Atlas', price: 300, imgUrl: 'img/atlas.jpg' },
+  { id: getRandomId(6), title: 'Zorba the Greek', price: 87, imgUrl: 'img/zorba.jpg' }
 ]
 
-function getBooksToDisplay() {
+function getBooks() {
   return gBooks
+}
+
+function getBook(bookId) {
+  return gBooks.find(book => book.id === bookId)
 }
 
 function removeBook(bookId) {
@@ -17,9 +21,15 @@ function removeBook(bookId) {
 }
 
 function updatePrice(bookId, newPrice) {
-  gBooks.find(book=>book.id===bookId).price = newPrice
+  const book = getBook(bookId)
+  book.price = newPrice
+  // return book
 }
 
 function addBook(title, price) {
-  gBooks.push({id:getRandomId(6),title,price,imgUrl:`${title}.url`})
+  gBooks.push(_createBook(title,price))
+}
+
+function _createBook(title, price, imgUrl) {
+  return { id: getRandomId(6), title, price, imgUrl: imgUrl||'img/blankBook.jpg' }
 }

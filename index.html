@@ -10,8 +10,8 @@
 
 <body onload="onInit()">
 
-  <h1>By The Book</h1>
-  <h2>Town book shop</h2>
+  <h1 class="main-header">By The Book</h1>
+  <h2 class="sub-header">Town book shop</h2>
 
   <table class="books-table">
     <thead>
@@ -27,6 +27,16 @@
   <section class="book-add">
     <button class="btn btn-add-book" onclick="onAddBook()">Add Book</button>
   </section>
+
+  <!-- <section class="modal hidden"></section> -->
+  <dialog class="modal">
+    <!-- <div class="grid-container"> -->
+      <!-- <div class="modal-img"></div>
+    <div class="modal-title"></div>
+    <div class="modal-price"></div>
+    <div class="modal-id"></div> -->
+    <!-- </div> -->
+  </dialog>
 
   <script src="js/services/util.service.js"></script>
   <script src="js/services/book.service.js"></script>
