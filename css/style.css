@@ -77,3 +77,11 @@ th{
 tr:nth-child(even){
   background-color: #ddd;
 }
+
+.btn-add-book{
+  background-color: rgb(74, 136, 186);
+  width: 6.5rem;
+  padding: .5rem;
+  color: #fff;
+}
+

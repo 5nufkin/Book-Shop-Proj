@@ -19,3 +19,7 @@ function removeBook(bookId) {
 function updatePrice(bookId, newPrice) {
   gBooks.find(book=>book.id===bookId).price = newPrice
 }
+
+function addBook(title, price) {
+  gBooks.push({id:getRandomId(6),title,price,imgUrl:`${title}.url`})
+}
