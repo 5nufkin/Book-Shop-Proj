@@ -11,11 +11,11 @@ function renderBooks() {
         <td>${book.price}</td>
         <td>
           <button class="btn btn-read">Read</button>
-          <button class="btn btn-update" onclick="onUpdateBook('${book.id}')>Update</button>
+          <button class="btn btn-update" onclick="onUpdateBook('${book.id}')">Update</button>
           <button class="btn btn-delete" onclick="onRemoveBook('${book.id}')">Delete</button>
         </td>
       </tr>`)
-  
+
   document.querySelector('.books-table tbody').innerHTML = strHTMLs.join('')
 }
 
@@ -25,5 +25,7 @@ function onRemoveBook(bookId) {
 }
 
 function onUpdateBook(bookId) {
-  
+  const newPrice = prompt('Enter new book price:')
+  updatePrice(bookId, newPrice)
+  renderBooks()
 }
