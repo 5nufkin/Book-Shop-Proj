@@ -47,7 +47,7 @@ function _createBooks() {
     gBooks = [
       _createBook('The adventures of Lori Ipsi', 120),
       _createBook('World Atlas', 300, 'img/atlas.jpg'),
-      _createBook('Zobra the Greek', 87, 'img/atlas.jpg', 'img/zorba.jpg')
+      _createBook('Zobra the Greek', 87, 'img/zorba.jpg')
     ]
 
     _saveBooks()

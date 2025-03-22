@@ -21,12 +21,14 @@ function renderBooks() {
 
 function onRemoveBook(bookId) {
   removeBook(bookId)
+  _showSucessModal('deleted')
   renderBooks()
 }
 
 function onUpdateBook(bookId) {
   const newPrice = prompt('Enter new book price:')
   updatePrice(bookId, newPrice)
+  _showSucessModal('updated')
   renderBooks()
 }
 
@@ -34,13 +36,13 @@ function onAddBook() {
   const bookName = prompt('Enter book name:')
   const bookPrice = prompt('Enter book price:')
   addBook(bookName, bookPrice)
+  _showSucessModal('added')
   renderBooks()
 }
 
 function onSeeDetails(bookId) {
   const bookDetails = getBook(bookId)
   const modal = document.querySelector('.modal ')
-  console.log(modal)
   modal.innerHTML = ` <button class="modal-close" onclick="onCloseModal()">x</button>
                       <div class="grid-container">
                       <div class="img-container"><img class="modal-img" src="${bookDetails.imgUrl}"></div>
@@ -52,7 +54,7 @@ function onSeeDetails(bookId) {
 }
 
 function onCloseModal() {
-  document.querySelector('.modal').close()
+  _closeModal('.modal')
 }
 
 function onFilterBy() {
@@ -65,4 +67,20 @@ function onFilterBy() {
 function onClearFilter() {
   const elInput = document.querySelector('input[name="book-filter"]')
   elInput.value = ''
+}
+
+function _showSucessModal(msg) {
+  const elSuccessModal = document.querySelector('.modal-success')
+  const strHTML = `<h1>Book has been ${msg} successfully.</h1>`
+  elSuccessModal.innerHTML = strHTML
+  elSuccessModal.showModal()
+  setTimeout(() => {
+    elSuccessModal.close()
+  }, 2000);
+  setTimeout(_closeModal,2000,'.modal-success')
+}
+
+function _closeModal(modalClassName) {
+  document.querySelector(`${modalClassName}`).close()
+  
 }

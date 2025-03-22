@@ -29,13 +29,13 @@ body {
   margin-top: 0;
 }
 
-.book-filter form{
+.book-filter form {
   width: 60%;
   margin: auto;
   min-width: 500px;
 }
 
-input[name="book-filter"]{
+input[name="book-filter"] {
   padding: .25rem;
   border-radius: .5rem;
   border: 1px solid #555;
@@ -46,14 +46,14 @@ input[name="book-filter"]{
   min-width: 200px;
 }
 
-.book-filter .btn-clear{
+.book-filter .btn-clear {
   background-color: white;
   color: #555;
   border: 1px solid #555;
   line-height: 1rem;
 }
 
-.book-filter .btn-clear:hover{
+.book-filter .btn-clear:hover {
   background-color: #555;
   color: white;
 }
@@ -141,13 +141,28 @@ tr:nth-child(even) {
   height: 100%;
 }
 
-.modal-close{
+.modal-success {
+  border-radius: 1rem;
+  width: min(35%, 350px);
+  border: 2px solid #333;
+  padding: .5rem;
+  background-color: white;
+  color: #222;
+}
+
+.modal-success h1 {
+  font-size: 1rem;
+}
+
+.modal-close {
   position: absolute;
-  right: -8px;
-  top: -8px;
+  right: -9px;
+  top: -9px;
   font-size: 1rem;
   border-radius: 50%;
   cursor: pointer;
+  background-color: white;
+  border: 1px solid #555;
 }
 
 .modal h1,
@@ -161,7 +176,7 @@ tr:nth-child(even) {
   grid-area: img;
 }
 
-.modal-img{
+.modal-img {
   max-height: 100%;
   border-radius: .5rem;
 }
@@ -181,11 +196,6 @@ tr:nth-child(even) {
   grid-area: id;
 }
 
-
-.hidden {
-  display: none;
-}
-
-.font-weight-normal{
+.font-weight-normal {
   font-weight: normal;
 }
