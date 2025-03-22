@@ -6,6 +6,10 @@ function onInit() {
 
 function renderBooks() {
   const books = getBooks()
+  if (!books.length){
+    _renderNoBooksFound()
+    return 
+  }
   var strHTMLs = books.map(book => `<tr>
         <td>${book.title}</td>
         <td>${book.price}$</td>
@@ -19,6 +23,11 @@ function renderBooks() {
   document.querySelector('.book-table tbody').innerHTML = strHTMLs.join('')
 
   renderStats()
+}
+
+function _renderNoBooksFound() {
+  const strHTML = `<td colspan="3"><h1 class="no-books-found">No matching books were found...</h1></td>`
+  document.querySelector('.book-table tbody').innerHTML = strHTML
 }
 
 function onRemoveBook(bookId) {

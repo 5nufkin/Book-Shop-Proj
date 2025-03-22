@@ -60,20 +60,22 @@ input[name="book-filter"] {
 
 .book-table {
   border-collapse: collapse;
-  /* width: min(90%, 700px); */
   margin: 2.5rem auto;
 }
 
-/* .book-table th:first-child{
-  width: 250px;
+.book-table thead th:first-child {
+  width: 50%;
+  min-width: 250px;
 }
-.book-table th:last-child{
-  width: 200px;
-} */
+
+.book-table thead th:last-child {
+  min-width: 250px;
+}
+
 
 .book-table th,
 .book-table td {
-  border: 1px solid #333;
+  border: 1px solid #aaa;
   padding: .35rem .75rem;
   text-align: start;
 }
@@ -113,7 +115,8 @@ tr:nth-child(even) {
   width: 6.5rem;
   padding: .5rem;
   color: #fff;
-  margin-bottom: 2rem;;
+  margin-bottom: 2rem;
+  ;
 }
 
 .modal {
@@ -142,7 +145,7 @@ tr:nth-child(even) {
   height: 100%;
 }
 
-.modal-alert{
+.modal-alert {
   border-radius: 1rem;
   width: min(35%, 350px);
   border: 2px solid #fff;
@@ -159,7 +162,7 @@ tr:nth-child(even) {
   font-size: 1rem;
 }
 
-.modal-error{
+.modal-error {
   color: #c33904;
 }
 
@@ -203,6 +206,13 @@ tr:nth-child(even) {
 
 .modal-id {
   grid-area: id;
+}
+
+.no-books-found{
+  text-align: center;
+  color: #aaa;
+  font-size: 1.5rem;
+  padding: 1rem;
 }
 
 .font-weight-normal {
