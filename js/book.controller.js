@@ -8,7 +8,7 @@ function renderBooks() {
   const books = getBooks()
   var strHTMLs = books.map(book => `<tr>
         <td>${book.title}</td>
-        <td>${book.price}</td>
+        <td>${book.price}$</td>
         <td>
           <button class="btn btn-read" onclick="onSeeDetails('${book.id}')">Read</button>
           <button class="btn btn-update" onclick="onUpdateBook('${book.id}')">Update</button>
