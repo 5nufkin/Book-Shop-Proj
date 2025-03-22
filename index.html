@@ -13,7 +13,13 @@
   <h1 class="main-header">By The Book</h1>
   <h2 class="sub-header">Town book shop</h2>
 
-  <section class="book-filter"></section>
+  <section class="book-filter">
+    <form>
+        <input type="text" name="book-filter" oninput="onFilterBy()" placeholder="What are you looking for?">
+        <!-- todo - add clear functionality -->
+        <button class="btn btn-clear" onclick="onClearFilter()">Clear</button> 
+    </form>
+  </section>
 
   <table class="book-table">
     <thead>

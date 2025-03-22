@@ -3,10 +3,13 @@
 //Model
 var gBooks = []
 const STORAGE_KEY = 'booksDB'
+var gFilterBy
 _createBooks()
 
 function getBooks() {
-  return gBooks
+  if (!gFilterBy) return gBooks
+
+  return gBooks.filter(book => book.title.toLowerCase().includes(gFilterBy.toLowerCase()))
 }
 
 function getBook(bookId) {
@@ -40,7 +43,7 @@ function _createBooks() {
   gBooks = loadFromStorage(STORAGE_KEY)
 
   if (!gBooks.length) {
-    
+
     gBooks = [
       _createBook('The adventures of Lori Ipsi', 120),
       _createBook('World Atlas', 300, 'img/atlas.jpg'),
@@ -53,4 +56,8 @@ function _createBooks() {
 
 function _saveBooks() {
   saveToStorage(STORAGE_KEY, gBooks)
+}
+
+function filterBy(filter) {
+  gFilterBy = filter + ''
 }

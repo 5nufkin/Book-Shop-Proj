@@ -55,16 +55,14 @@ function onCloseModal() {
   document.querySelector('.modal').close()
 }
 
-// function onSeeDetails(bookId) {
-//   const bookDetails = getBook(bookId)
-//   const modal = document.querySelector('.modal ')
-//   console.log(modal)
-//   modal.innerHTML = ` <button class="modal-close" onclick="onCloseModal()">x</button>
-//                       <div class="grid-container">
-//                       <div class="img-container"><img class="modal-img" src="${bookDetails.imgUrl}"></div>
-//                       <h1 class="modal-title">${bookDetails.title}</h1>
-//                       <h2 class="modal-price">Price: ${bookDetails.price}$</h2>
-//                       <h3 class="modal-id">id: ${bookDetails.id}</h3>
-//                       </div>`
-//   modal.showModal()
-// }
+function onFilterBy() {
+  const elInput = document.querySelector('input[name="book-filter"]')
+  const elInputValue = elInput.value
+  filterBy(elInputValue)
+  renderBooks()
+}
+
+function onClearFilter() {
+  const elInput = document.querySelector('input[name="book-filter"]')
+  elInput.value = ''
+}

@@ -29,6 +29,35 @@ body {
   margin-top: 0;
 }
 
+.book-filter form{
+  width: 60%;
+  margin: auto;
+  min-width: 500px;
+}
+
+input[name="book-filter"]{
+  padding: .25rem;
+  border-radius: .5rem;
+  border: 1px solid #555;
+  line-height: 1rem;
+  font-size: 1rem;
+  width: 50%;
+  max-width: 350px;
+  min-width: 200px;
+}
+
+.book-filter .btn-clear{
+  background-color: white;
+  color: #555;
+  border: 1px solid #555;
+  line-height: 1rem;
+}
+
+.book-filter .btn-clear:hover{
+  background-color: #555;
+  color: white;
+}
+
 .book-table {
   border-collapse: collapse;
   /* width: min(90%, 700px); */
