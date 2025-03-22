@@ -16,7 +16,7 @@ function renderBooks() {
         </td>
       </tr>`)
 
-  document.querySelector('.books-table tbody').innerHTML = strHTMLs.join('')
+  document.querySelector('.book-table tbody').innerHTML = strHTMLs.join('')
 }
 
 function onRemoveBook(bookId) {

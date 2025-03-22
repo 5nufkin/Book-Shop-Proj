@@ -29,21 +29,21 @@ body {
   margin-top: 0;
 }
 
-.books-table {
+.book-table {
   border-collapse: collapse;
   /* width: min(90%, 700px); */
   margin: 4rem auto;
 }
 
-/* .books-table th:first-child{
+/* .book-table th:first-child{
   width: 250px;
 }
-.books-table th:last-child{
+.book-table th:last-child{
   width: 200px;
 } */
 
-.books-table th,
-.books-table td {
+.book-table th,
+.book-table td {
   border: 1px solid #333;
   padding: .35rem .75rem;
   text-align: start;
