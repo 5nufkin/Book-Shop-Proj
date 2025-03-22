@@ -36,8 +36,15 @@
     <button class="btn btn-add-book" onclick="onAddBook()">Add Book</button>
   </section>
 
+  <div class="book-stats">
+    <h3>Expensive books: <span class="expensive-books-count font-weight-normal"></span></h3>
+    <h3>Average books: <span class="average-books-count font-weight-normal"></span></h3>
+    <h3>Cheap books: <span class="cheap-books-count font-weight-normal"></span></h3>
+  </div>
+
   <dialog class="modal"></dialog>
-  <dialog class="modal-success"></dialog>
+  <dialog class="modal-alert modal-success"></dialog>
+  <dialog class="modal-alert modal-error"></dialog>
 
   <script src="js/services/util.service.js"></script>
   <script src="js/services/storage.service.js"></script>

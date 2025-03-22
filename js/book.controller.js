@@ -17,6 +17,8 @@ function renderBooks() {
       </tr>`)
 
   document.querySelector('.book-table tbody').innerHTML = strHTMLs.join('')
+
+  renderStats()
 }
 
 function onRemoveBook(bookId) {
@@ -34,10 +36,14 @@ function onUpdateBook(bookId) {
 
 function onAddBook() {
   const bookName = prompt('Enter book name:')
-  const bookPrice = prompt('Enter book price:')
-  addBook(bookName, bookPrice)
-  _showSucessModal('added')
-  renderBooks()
+  const bookPrice = +prompt('Enter book price:')
+  if (bookName.length && bookPrice > 0) {
+    addBook(bookName, bookPrice)
+    _showSucessModal('added')
+    renderBooks()
+  } else {
+    _showErrorModal()
+  }
 }
 
 function onSeeDetails(bookId) {
@@ -57,6 +63,12 @@ function onCloseModal() {
   _closeModal('.modal')
 }
 
+function renderStats() {
+  document.querySelector('.expensive-books-count').innerText = getExpensiveBooksCount()+''
+  document.querySelector('.average-books-count').innerText = getAverageBooksCount()
+  document.querySelector('.cheap-books-count').innerText = getCheapBooksCount()
+}
+
 function onFilterBy() {
   const elInput = document.querySelector('input[name="book-filter"]')
   const elInputValue = elInput.value
@@ -72,15 +84,23 @@ function onClearFilter() {
 function _showSucessModal(msg) {
   const elSuccessModal = document.querySelector('.modal-success')
   const strHTML = `<h1>Book has been ${msg} successfully.</h1>`
+
   elSuccessModal.innerHTML = strHTML
   elSuccessModal.showModal()
-  setTimeout(() => {
-    elSuccessModal.close()
-  }, 2000);
+
   setTimeout(_closeModal,2000,'.modal-success')
 }
 
 function _closeModal(modalClassName) {
   document.querySelector(`${modalClassName}`).close()
-  
+}
+
+function _showErrorModal() {
+  const elErrorModal = document.querySelector('.modal-error')
+  const strHTML = `<h1>One or more details entered is invalid.</h1>`
+
+  elErrorModal.innerHTML = strHTML
+  elErrorModal.showModal()
+
+  setTimeout(_closeModal,2000,'.modal-error')
 }

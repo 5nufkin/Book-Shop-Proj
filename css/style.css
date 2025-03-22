@@ -26,7 +26,7 @@ body {
 }
 
 .sub-header {
-  margin-top: 0;
+  margin-block: 0 3rem;
 }
 
 .book-filter form {
@@ -61,7 +61,7 @@ input[name="book-filter"] {
 .book-table {
   border-collapse: collapse;
   /* width: min(90%, 700px); */
-  margin: 4rem auto;
+  margin: 2.5rem auto;
 }
 
 /* .book-table th:first-child{
@@ -113,6 +113,7 @@ tr:nth-child(even) {
   width: 6.5rem;
   padding: .5rem;
   color: #fff;
+  margin-bottom: 2rem;;
 }
 
 .modal {
@@ -141,17 +142,25 @@ tr:nth-child(even) {
   height: 100%;
 }
 
-.modal-success {
+.modal-alert{
   border-radius: 1rem;
   width: min(35%, 350px);
-  border: 2px solid #333;
+  border: 2px solid #fff;
   padding: .5rem;
-  background-color: white;
-  color: #222;
+  color: #333;
+
 }
 
-.modal-success h1 {
+.modal-success {
+  color: #2d8727;
+}
+
+.modal-alert h1 {
   font-size: 1rem;
+}
+
+.modal-error{
+  color: #c33904;
 }
 
 .modal-close {

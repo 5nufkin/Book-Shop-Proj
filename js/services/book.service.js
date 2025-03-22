@@ -61,3 +61,15 @@ function _saveBooks() {
 function filterBy(filter) {
   gFilterBy = filter + ''
 }
+
+function getExpensiveBooksCount() {
+  return gBooks.filter(book => book.price >= 200).length
+}
+
+function getAverageBooksCount() {
+  return gBooks.filter(book => book.price < 200 && book.price >= 80).length
+}
+
+function getCheapBooksCount() {
+  return gBooks.filter(book => book.price < 80).length
+}
