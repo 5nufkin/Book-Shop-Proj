@@ -6,10 +6,20 @@ const STORAGE_KEY = 'booksDB'
 var gFilterBy
 _createBooks()
 
-function getBooks() {
-  if (!gFilterBy) return gBooks
+function getBooks(options) {
+  if (!options.filterBy.txt && !options.filterBy.minRating) return gBooks
 
-  return gBooks.filter(book => book.title.toLowerCase().includes(gFilterBy.toLowerCase()))
+  var books = _filterBooks(options.filterBy)
+
+  return books
+  // return gBooks.filter(book => book.title.toLowerCase().includes(gQueryOptions.filterBy.txt.toLowerCase()))
+}
+
+function _filterBooks(filterBy) {
+  var books = gBooks
+  if (filterBy.txt) books = books.filter(book => book.title.toLowerCase().includes(gQueryOptions.filterBy.txt.toLowerCase()))
+  if (filterBy.minRating) books = books.filter(book => book.rating >= filterBy.minRating)
+  return books
 }
 
 function getBook(bookId) {
@@ -29,12 +39,12 @@ function updatePrice(bookId, newPrice) {
   // return book
 }
 
-function addBook(title, price) {
-  gBooks.push(_createBook(title, price))
+function addBook(title, price, rating) {
+  gBooks.push(_createBook(title, price, rating))
   _saveBooks()
 }
 
-function _createBook(title, price, imgUrl, rating = 0) {
+function _createBook(title, price, rating = 0, imgUrl) {
   return { id: getRandomId(6), title, price, imgUrl: imgUrl || 'img/blankBook.jpg', rating }
 }
 

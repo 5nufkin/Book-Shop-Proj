@@ -1,11 +1,18 @@
 'use strict'
 
+const gQueryOptions = {
+  filterBy: { txt: '', minRating: 0 },
+  sortBy: {}
+}
+
 function onInit() {
+  readQueryParams()
+  renderQueryParams()
   renderBooks()
 }
 
 function renderBooks() {
-  const books = getBooks()
+  const books = getBooks(gQueryOptions)
   if (!books || !books.length) {
     _renderNoBooksFound()
     return
@@ -27,7 +34,7 @@ function renderBooks() {
 }
 
 function _renderNoBooksFound() {
-  const strHTML = `<td colspan="3"><h1 class="no-books-found">No matching books were found...</h1></td>`
+  const strHTML = `<td colspan="4"><h1 class="no-books-found">No matching books were found...</h1></td>`
   document.querySelector('.book-table tbody').innerHTML = strHTML
 }
 
@@ -47,8 +54,9 @@ function onUpdateBook(bookId) {
 function onAddBook() {
   const bookName = prompt('Enter book name:')
   const bookPrice = +prompt('Enter book price:')
-  if (bookName.length && bookPrice > 0) {
-    addBook(bookName, bookPrice)
+  const bookRating = +prompt('Enter rating 1-5:')
+  if (bookName.length && bookPrice > 0 && ((bookRating >= 1 && bookRating <= 5) || !bookRating)) {
+    addBook(bookName, bookPrice, bookRating)
     _showSucessModal('added')
     renderBooks()
   } else {
@@ -80,16 +88,29 @@ function renderStats() {
   document.querySelector('.cheap-books-count').innerText = getCheapBooksCount()
 }
 
-function onFilterBy() {
-  const elInput = document.querySelector('input[name="book-filter"]')
-  const elInputValue = elInput.value
-  filterBy(elInputValue)
+function onFilterByTitle(titleTxt) {
+  gQueryOptions.filterBy.txt = titleTxt
   renderBooks()
+  setQueryParams()
+}
+
+function onFilterByRating(minRating) {
+  gQueryOptions.filterBy.minRating = minRating
+  console.log('minRating:', minRating);
+  renderBooks()
+  setQueryParams()
 }
 
 function onClearFilter() {
+  gQueryOptions.filterBy = { txt: '', minRating: 0 }
+
   const elInput = document.querySelector('input[name="book-filter"]')
+  const elRating = document.querySelector('.book-filter .min-rating')
+
   elInput.value = ''
+  elRating.value = ''
+  setQueryParams()
+  renderBooks()
 }
 
 function _showSucessModal(msg) {
@@ -114,4 +135,32 @@ function _showErrorModal() {
   elErrorModal.showModal()
 
   setTimeout(_closeModal, 2000, '.modal-error')
+}
+
+//Query Params
+
+function readQueryParams() {
+  const queryParams = new URLSearchParams(window.location.search)
+  gQueryOptions.filterBy = {
+    txt: queryParams.get('title') || '',
+    minRating: queryParams.get('minRating') || '' //todo - check for the other || to see if it should be 0 or "" like the option value
+  }
+}
+
+function renderQueryParams() {
+  document.querySelector('input[name="book-filter"').value = gQueryOptions.filterBy.txt
+  console.log(document.querySelector('.min-rating'))
+  console.log(document.querySelector('.min-rating').value)
+  document.querySelector('.min-rating').value = gQueryOptions.filterBy.minRating
+}
+
+function setQueryParams() {
+  const queryParams = new URLSearchParams()
+
+  queryParams.set('title', gQueryOptions.filterBy.txt)
+  queryParams.set('minRating', gQueryOptions.filterBy.minRating)
+
+  const newUrl =
+    window.location.protocol + "//" + window.location.host + window.location.pathname + "?" + queryParams.toString()
+  window.history.pushState({ path: newUrl }, '', newUrl)
 }

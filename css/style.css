@@ -34,7 +34,7 @@ body {
   margin-block-end: 2.5rem;;
 }
 
-.book-filter form {
+.book-filter fieldset {
   width: 60%;
   margin: auto;
   min-width: 500px;

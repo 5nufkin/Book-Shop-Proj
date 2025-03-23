@@ -15,10 +15,26 @@
   </div>
 
   <section class="book-filter">
-    <form>
-      <input type="text" name="book-filter" oninput="onFilterBy()" placeholder="What are you looking for?">
-      <button class="btn btn-clear" onclick="onClearFilter()">Clear</button>
-    </form>
+    <fieldset>
+      <legend>Filter & Sort</legend>
+
+      <div class="filter-by">
+        <input type="text" name="book-filter" oninput="onFilterByTitle(this.value)" placeholder="Search by title">
+        <select class="min-rating" onchange="onFilterByRating(this.value)">
+          <option value="">Rating</option>
+          <option value="1">1+</option>
+          <option value="2">2+</option>
+          <option value="3">3+</option>
+          <option value="4">4+</option>
+          <option value="5">5</option>
+        </select>
+        <button class="btn btn-clear" onclick="onClearFilter()">Clear</button>
+      </div>
+
+      <div class="sort-by">
+
+      </div>
+    </fieldset>
   </section>
 
   <table class="book-table">
