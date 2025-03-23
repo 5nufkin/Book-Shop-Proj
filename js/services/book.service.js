@@ -67,7 +67,8 @@ function addBook(title, price, rating) {
 }
 
 function _createBook(title, price, rating = 0, imgUrl) {
-  return { id: getRandomId(6), title, price, imgUrl: imgUrl || 'img/blankBook.jpg', rating }
+  rating = +rating
+  return { id: getRandomId(6), title, price, imgUrl: imgUrl || 'img/blankBook.jpg', rating: rating || 0 }
 }
 
 function _createBooks() {
@@ -77,10 +78,13 @@ function _createBooks() {
   if (!gBooks || !gBooks.length) {
 
     gBooks = [
-      _createBook('The adventures of Lori Ipsi', 120, 0, 5),
-      _createBook('World Atlas', 300, 'img/atlas.jpg'),
-      _createBook('Zobra the Greek', 87, 'img/zorba.jpg', 2)
+      _createBook('The adventures of Lori Ipsi', 120, 0),
+      _createBook('World Atlas', 300, 5, 'img/atlas.jpg'),
+      _createBook('Zobra the Greek', 87, 3, 'img/zorba.jpg', 2),
     ]
+    for (var i = 0; i < 6; i++) {
+      gBooks.push(_createBook(`Harry Potter ${i + 1}`, getRandomIntInclusive(50, 270), getRandomIntInclusive(1, 5), `img/Harry_potter_${i + 1}.jpg`))
+    }
 
     _saveBooks()
   }

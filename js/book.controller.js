@@ -98,7 +98,6 @@ function onFilterByTitle(titleTxt) {
 
 function onFilterByRating(minRating) {
   gQueryOptions.filterBy.minRating = minRating
-  console.log('minRating:', minRating);
   renderBooks()
   setQueryParams()
 }
