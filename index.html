@@ -9,69 +9,76 @@
 </head>
 
 <body onload="onInit()">
-  <div class="headers">
-    <h1 class="main-header">By The Book</h1>
-    <h2 class="sub-header">Town book shop.</h2>
-  </div>
+  <div class="main-container">
+    <div class="headers">
+      <h1 class="main-header">By The Book</h1>
+      <h2 class="sub-header">Town book shop.</h2>
+    </div>
 
-  <section class="book-filter">
-    <fieldset>
-      <legend>Filter & Sort</legend>
+    <section class="book-filter">
+      <fieldset>
+        <legend>Filter & Sort</legend>
 
-      <div class="filter-by">
-        <input type="text" name="book-filter" oninput="onFilterByTitle(this.value)" placeholder="Search by title">
-        <select class="min-rating" onchange="onFilterByRating(this.value)">
-          <option value="">Rating</option>
-          <option value="1">1+</option>
-          <option value="2">2+</option>
-          <option value="3">3+</option>
-          <option value="4">4+</option>
-          <option value="5">5</option>
-        </select>
-
-        <div class="sort-by">
-          <select onchange="onSetSortBy()">
-            <option value="">Sort By</option>
-            <option value="title">Title</option>
-            <option value="price">Price</option>
-            <option value="rating">Rating</option>
+        <div class="filter-by">
+          <input type="text" name="book-filter" oninput="onFilterByTitle(this.value)" placeholder="Search by title">
+          <select class="min-rating" onchange="onFilterByRating(this.value)">
+            <option value="0">Rating</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+            <option value="4">4+</option>
+            <option value="5">5</option>
           </select>
 
-          <div>
-            <label onchange="onSetSortBy()" for="ascending">
-              <input type="radio" id="ascending" name="sort-order" value="1" checked>
-              Ascending</label>
+          <div class="sort-by">
+            <select onchange="onSetSortBy()">
+              <option value="">Sort By</option>
+              <option value="title">Title</option>
+              <option value="price">Price</option>
+              <option value="rating">Rating</option>
+            </select>
+
+            <div>
+              <label onchange="onSetSortBy()" for="ascending">
+                <input type="radio" id="ascending" name="sort-order" value="1" checked>
+                Ascending</label>
+            </div>
+            <div><label for="descending">
+                <input onchange="onSetSortBy()" type="radio" id="descending" value="-1" name="sort-order">
+                Descending</label>
+            </div>
           </div>
-          <div><label for="descending">
-            <input onchange="onSetSortBy()" type="radio" id="descending" value="-1" name="sort-order">
-            Descending</label>
-          </div>
+
+          <button class="btn btn-clear" onclick="onClearFilter()">Clear</button>
         </div>
 
-        <button class="btn btn-clear" onclick="onClearFilter()">Clear</button>
-      </div>
+      </fieldset>
+    </section>
 
-      <div class="sort-by">
+    <section class="book-add">
+      <button class="btn btn-add-book" onclick="onAddBook()">Add Book</button>
+    </section>
 
-      </div>
-    </fieldset>
-  </section>
 
-  <table class="book-table">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Rating</th>
-        <th>Price</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+    <table class="book-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Rating</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
 
-  <section class="book-add">
-    <button class="btn btn-add-book" onclick="onAddBook()">Add Book</button>
-  </section>
+    <section class="page-btns">
+      <button onclick="onPrevPage()" class="btn btn-page">Previous</button>
+      <span class="current-page"></span>
+      <button onclick="onNextPage()" class="btn btn-page">Next</button>
+    </section>
+
+  </div>
 
   <footer>
     <div class="stats-container">

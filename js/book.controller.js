@@ -2,13 +2,15 @@
 
 const gQueryOptions = {
   filterBy: { txt: '', minRating: 0 },
-  sortBy: {}
+  sortBy: {},
+  page: { idx: 0, size: 3 }
 }
 
 function onInit() {
   readQueryParams()
   renderQueryParams()
   renderBooks()
+  renderCurrPage()
 }
 
 function renderBooks() {
@@ -92,12 +94,14 @@ function renderStats() {
 
 function onFilterByTitle(titleTxt) {
   gQueryOptions.filterBy.txt = titleTxt
+  gQueryOptions.page.idx = 0
   renderBooks()
   setQueryParams()
 }
 
 function onFilterByRating(minRating) {
   gQueryOptions.filterBy.minRating = minRating
+  gQueryOptions.page.idx = 0
   renderBooks()
   setQueryParams()
 }
@@ -107,9 +111,13 @@ function onClearFilter() {
 
   const elInput = document.querySelector('input[name="book-filter"]')
   const elRating = document.querySelector('.book-filter .min-rating')
+  const elSortBy = document.querySelector('.sort-by select')
 
   elInput.value = ''
-  elRating.value = ''
+  elRating.value = 0
+  elSortBy.value = ''
+
+  gQueryOptions.page.idx = 0
   setQueryParams()
   renderBooks()
 }
@@ -123,8 +131,28 @@ function onSetSortBy() {
 
   gQueryOptions.sortBy = { [sortField]: sortDir }
 
+  gQueryOptions.page.idx = 0
   renderBooks()
   setQueryParams()
+}
+
+//Naviagte Pages
+
+function onNextPage() {
+  gQueryOptions.page.idx++
+  renderCurrPage()
+  renderBooks()
+}
+
+function onPrevPage() {
+  gQueryOptions.page.idx--
+  renderCurrPage()
+  renderBooks()
+}
+
+function renderCurrPage() {
+  const elCurrPage = document.querySelector('.current-page')
+  elCurrPage.innerText = `${gQueryOptions.page.idx+1}`
 }
 
 //Modals
@@ -159,7 +187,7 @@ function readQueryParams() {
   const queryParams = new URLSearchParams(window.location.search)
   gQueryOptions.filterBy = {
     txt: queryParams.get('title') || '',
-    minRating: queryParams.get('minRating') || '' //todo - check for the other || to see if it should be 0 or "" like the option value
+    minRating: queryParams.get('minRating') || 0 
   }
 }
 

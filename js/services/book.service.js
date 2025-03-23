@@ -16,6 +16,9 @@ function getBooks(options) {
 
   books = _sortBooks(books, sortBy)
 
+  const startIdx = page.idx * page.size
+  books = books.slice(startIdx, startIdx + page.size)
+
   return books
 }
 

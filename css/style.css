@@ -21,6 +21,9 @@ body {
   margin: 0;
 }
 
+.main-container{
+  padding-block-end: 4rem;
+}
 
 .main-header {
   font-size: 4rem;
@@ -37,6 +40,7 @@ body {
 .book-filter fieldset {
   width: 60%;
   margin: auto;
+  margin-block-end: 2rem;
   min-width: 500px;
 }
 
@@ -73,7 +77,7 @@ input[name="book-filter"]::placeholder{
 
 .book-table {
   border-collapse: collapse;
-  margin: 2.5rem auto;
+  margin: 1rem auto;
 }
 
 .book-table thead th:first-child {
@@ -130,12 +134,26 @@ tr:nth-child(even) {
   background-color: var(--light-green);
 }
 
-.btn-add-book {
+.btn-add-book,
+.btn-page {
   background-color: var(--dark-green);
-  width: 6.5rem;
   padding: .5rem;
   color: #fff;
-  margin-bottom: 2rem;
+}
+
+.btn-add-book{
+  width: 6.5rem;
+}
+
+.btn-page{
+  width: 5rem;
+}
+
+.current-page{
+  display: inline-block;
+  margin-inline: .5rem;
+  color: var(--darker-brown);
+  font-weight: bold;
 }
 
 .modal {
