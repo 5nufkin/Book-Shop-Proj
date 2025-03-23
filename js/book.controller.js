@@ -12,6 +12,7 @@ function renderBooks() {
   }
   var strHTMLs = books.map(book => `<tr>
         <td>${book.title}</td>
+        <td>${book.rating === 0 ? 'Unrated' : book.rating}</td>
         <td>$${Number(book.price).toFixed(2)}</td>
         <td>
           <button class="btn btn-read" onclick="onSeeDetails('${book.id}')">Read</button>

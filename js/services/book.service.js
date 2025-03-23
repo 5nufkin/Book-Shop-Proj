@@ -34,20 +34,20 @@ function addBook(title, price) {
   _saveBooks()
 }
 
-function _createBook(title, price, imgUrl) {
-  return { id: getRandomId(6), title, price, imgUrl: imgUrl || 'img/blankBook.jpg' }
+function _createBook(title, price, imgUrl, rating = 0) {
+  return { id: getRandomId(6), title, price, imgUrl: imgUrl || 'img/blankBook.jpg', rating }
 }
 
 function _createBooks() {
 
   gBooks = loadFromStorage(STORAGE_KEY)
 
-  if (!gBooks.length) {
+  if (!gBooks || !gBooks.length) {
 
     gBooks = [
-      _createBook('The adventures of Lori Ipsi', 120),
+      _createBook('The adventures of Lori Ipsi', 120, 0, 5),
       _createBook('World Atlas', 300, 'img/atlas.jpg'),
-      _createBook('Zobra the Greek', 87, 'img/zorba.jpg')
+      _createBook('Zobra the Greek', 87, 'img/zorba.jpg', 2)
     ]
 
     _saveBooks()
