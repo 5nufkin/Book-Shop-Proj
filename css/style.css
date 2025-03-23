@@ -2,31 +2,36 @@
   box-sizing: border-box;
 }
 
-/* :root{
-  --background-primary: #c5ae96;
-  --background-secondary: #b78d6a;
-  --accent-primary: #334b33;
-  --accent-secondary: #7f886e;
-  --text-primary: #fff;
-  --neutral-primary: #d5d5d5;
-  --neutral-secondary: #555;
-} */
+:root{
+  --light-beige: #c1a481;
+  --light-brown: #a7805a;
+  --dark-brown: #81634a;
+  --darker-brown: #503d2f;
+  --light-green: #aea781;
+  --dark-green: #555842;
+  --darker-green: #41442d;
+}
 
 body {
-  display: grid;
-  background-color: #eee;
+  height: 100vh;
+  background-color: var(--light-beige);
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #333;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: var(--darker-brown);
+  margin: 0;
 }
+
 
 .main-header {
   font-size: 4rem;
-  margin-block: 1.5rem .5rem;
+  margin-block: 1.5rem .75rem ;
+  color: var(--darker-green)
 }
 
 .sub-header {
-  margin-block: 0 3rem;
+  margin-block: 0;
+  color: var(--dark-brown);
+  margin-block-end: 2.5rem;;
 }
 
 .book-filter form {
@@ -38,23 +43,31 @@ body {
 input[name="book-filter"] {
   padding: .25rem;
   border-radius: .5rem;
-  border: 1px solid #555;
+  border: 1px solid var(--dark-brown);
   line-height: 1rem;
   font-size: 1rem;
   width: 50%;
   max-width: 350px;
   min-width: 200px;
+  background-color: var(--light-brown);
+  color: white;
+  outline: none;
+}
+
+input[name="book-filter"]::placeholder{
+  color: white;
 }
 
 .book-filter .btn-clear {
-  background-color: white;
-  color: #555;
-  border: 1px solid #555;
+  background-color: var(--light-brown);
+  color: white;
+  border: 1px solid var(--dark-brown);
   line-height: 1rem;
+  transition: .1s;
 }
 
 .book-filter .btn-clear:hover {
-  background-color: #555;
+  background-color: var(--dark-brown);
   color: white;
 }
 
@@ -75,7 +88,7 @@ input[name="book-filter"] {
 
 .book-table th,
 .book-table td {
-  border: 1px solid #aaa;
+  border: 1px solid var(--darker-brown);
   padding: .35rem .75rem;
   text-align: start;
 }
@@ -88,35 +101,41 @@ input[name="book-filter"] {
   border: none;
   font-weight: bold;
   cursor: pointer;
+  color: white;
+  transition: .2s;
+}
+
+.btn:hover{
+  background-color: rgb(123, 110, 86);
 }
 
 .btn-read {
-  background-color: lightskyblue;
+  background-color: var(--light-brown);
 }
 
 .btn-update {
-  background-color: rgb(73, 197, 191);
+  background-color: var(--dark-brown);
 }
 
 .btn-delete {
-  background: lightcoral;
+  background: var(--darker-brown);
 }
 
 th {
-  background-color: #ccc;
+  background-color: var(--dark-green);
+  color: var(--light-beige)
 }
 
 tr:nth-child(even) {
-  background-color: #ddd;
+  background-color: var(--light-green);
 }
 
 .btn-add-book {
-  background-color: rgb(74, 136, 186);
+  background-color: var(--dark-green);
   width: 6.5rem;
   padding: .5rem;
   color: #fff;
   margin-bottom: 2rem;
-  ;
 }
 
 .modal {
@@ -155,7 +174,7 @@ tr:nth-child(even) {
 }
 
 .modal-success {
-  color: #2d8727;
+  color: var(--dark-green);
 }
 
 .modal-alert h1 {
@@ -163,7 +182,7 @@ tr:nth-child(even) {
 }
 
 .modal-error {
-  color: #c33904;
+  color: var(--dark-brown);
 }
 
 .modal-close {
@@ -208,9 +227,40 @@ tr:nth-child(even) {
   grid-area: id;
 }
 
+footer{
+  display: flex;
+  align-items: center;
+
+  position: fixed;
+  bottom: 0;
+
+  width: 100%;
+  height: 2rem;
+  background-color: var(--darker-brown);
+  color: var(--light-beige);
+}
+
+.stats-container{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 70%;
+  margin: auto;
+}
+
+footer h3{
+  display: inline-block;
+  margin-block: 0;
+  margin-inline-end: 3rem;
+}
+
+footer h3:last-child{
+  margin-inline-end: 0;
+}
+
 .no-books-found{
   text-align: center;
-  color: #aaa;
+  color: var(--dark-green);
   font-size: 1.5rem;
   padding: 1rem;
 }

@@ -9,14 +9,15 @@
 </head>
 
 <body onload="onInit()">
-
-  <h1 class="main-header">By The Book</h1>
-  <h2 class="sub-header">Town book shop</h2>
+  <div class="headers">
+    <h1 class="main-header">By The Book</h1>
+    <h2 class="sub-header">Town book shop.</h2>
+  </div>
 
   <section class="book-filter">
     <form>
-        <input type="text" name="book-filter" oninput="onFilterBy()" placeholder="What are you looking for?">
-        <button class="btn btn-clear" onclick="onClearFilter()">Clear</button> 
+      <input type="text" name="book-filter" oninput="onFilterBy()" placeholder="What are you looking for?">
+      <button class="btn btn-clear" onclick="onClearFilter()">Clear</button>
     </form>
   </section>
 
@@ -35,11 +36,13 @@
     <button class="btn btn-add-book" onclick="onAddBook()">Add Book</button>
   </section>
 
-  <div class="book-stats">
-    <h3>Expensive books: <span class="expensive-books-count font-weight-normal"></span></h3>
-    <h3>Average books: <span class="average-books-count font-weight-normal"></span></h3>
-    <h3>Cheap books: <span class="cheap-books-count font-weight-normal"></span></h3>
-  </div>
+  <footer>
+    <div class="stats-container">
+      <h3>Expensive books: <span class="expensive-books-count font-weight-normal"></span></h3>
+      <h3>Average books: <span class="average-books-count font-weight-normal"></span></h3>
+      <h3>Cheap books: <span class="cheap-books-count font-weight-normal"></span></h3>
+    </div>
+  </footer>
 
   <dialog class="modal"></dialog>
   <dialog class="modal-alert modal-success"></dialog>

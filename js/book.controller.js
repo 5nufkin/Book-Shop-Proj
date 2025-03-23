@@ -6,13 +6,13 @@ function onInit() {
 
 function renderBooks() {
   const books = getBooks()
-  if (!books.length){
+  if (!books || !books.length) {
     _renderNoBooksFound()
-    return 
+    return
   }
   var strHTMLs = books.map(book => `<tr>
         <td>${book.title}</td>
-        <td>${book.price}$</td>
+        <td>$${Number(book.price).toFixed(2)}</td>
         <td>
           <button class="btn btn-read" onclick="onSeeDetails('${book.id}')">Read</button>
           <button class="btn btn-update" onclick="onUpdateBook('${book.id}')">Update</button>
@@ -73,7 +73,7 @@ function onCloseModal() {
 }
 
 function renderStats() {
-  document.querySelector('.expensive-books-count').innerText = getExpensiveBooksCount()+''
+  document.querySelector('.expensive-books-count').innerText = getExpensiveBooksCount() + ''
   document.querySelector('.average-books-count').innerText = getAverageBooksCount()
   document.querySelector('.cheap-books-count').innerText = getCheapBooksCount()
 }
@@ -97,7 +97,7 @@ function _showSucessModal(msg) {
   elSuccessModal.innerHTML = strHTML
   elSuccessModal.showModal()
 
-  setTimeout(_closeModal,2000,'.modal-success')
+  setTimeout(_closeModal, 2000, '.modal-success')
 }
 
 function _closeModal(modalClassName) {
@@ -111,5 +111,5 @@ function _showErrorModal() {
   elErrorModal.innerHTML = strHTML
   elErrorModal.showModal()
 
-  setTimeout(_closeModal,2000,'.modal-error')
+  setTimeout(_closeModal, 2000, '.modal-error')
 }
