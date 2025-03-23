@@ -139,20 +139,34 @@ function onSetSortBy() {
 //Naviagte Pages
 
 function onNextPage() {
-  gQueryOptions.page.idx++
+  const pageCount = getPageCount(gQueryOptions)
+
+  if (gQueryOptions.page.idx === pageCount - 1) {
+    gQueryOptions.page.idx = 0
+  } else {
+    gQueryOptions.page.idx++
+  }
+
+
   renderCurrPage()
   renderBooks()
 }
 
 function onPrevPage() {
-  gQueryOptions.page.idx--
+  const pageCount = getPageCount(gQueryOptions)
+
+  if (gQueryOptions.page.idx === 0) {
+    gQueryOptions.page.idx = pageCount - 1
+  } else {
+    gQueryOptions.page.idx--
+  }
   renderCurrPage()
   renderBooks()
 }
 
 function renderCurrPage() {
   const elCurrPage = document.querySelector('.current-page')
-  elCurrPage.innerText = `${gQueryOptions.page.idx+1}`
+  elCurrPage.innerText = `${gQueryOptions.page.idx + 1}`
 }
 
 //Modals
@@ -182,12 +196,13 @@ function _showErrorModal() {
 }
 
 //Query Params
+//Todo - add support for options I added 
 
 function readQueryParams() {
   const queryParams = new URLSearchParams(window.location.search)
   gQueryOptions.filterBy = {
     txt: queryParams.get('title') || '',
-    minRating: queryParams.get('minRating') || 0 
+    minRating: queryParams.get('minRating') || 0
   }
 }
 

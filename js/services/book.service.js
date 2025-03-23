@@ -22,6 +22,17 @@ function getBooks(options) {
   return books
 }
 
+function getPageCount(options) {
+  const page = options.page
+  const filterBy = options.filterBy
+
+  const books = _filterBooks(filterBy)
+
+  const pageCount = Math.ceil(books.length / page.size)
+  
+  return pageCount
+}
+
 function _sortBooks(books, sortBy) {
 
   if (sortBy.title) {
