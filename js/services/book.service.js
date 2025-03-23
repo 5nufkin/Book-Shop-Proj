@@ -29,7 +29,7 @@ function getPageCount(options) {
   const books = _filterBooks(filterBy)
 
   const pageCount = Math.ceil(books.length / page.size)
-  
+
   return pageCount
 }
 
@@ -75,9 +75,17 @@ function updatePrice(bookId, newPrice) {
   // return book
 }
 
-function addBook(title, price, rating) {
-  gBooks.push(_createBook(title, price, rating))
+function addBook(title, price, rating, imgUrl) {
+  gBooks.push(_createBook(title, price, rating, imgUrl))
   _saveBooks()
+}
+
+function updateBook(bookId, title, price, rating, imgUrl) {
+  const book = getBook(bookId)
+  book.title = title
+  book.price = price
+  book.rating = rating
+  book.imgUrl = imgUrl?imgUrl:'img/blankBook.jpg'
 }
 
 function _createBook(title, price, rating = 0, imgUrl) {

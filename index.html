@@ -88,6 +88,31 @@
     </div>
   </footer>
 
+  <dialog class="book-edit-modal">
+    <div class="form-container">
+
+      <h2>Add/Edit book</h2>
+      <form onsubmit="onSaveBook()" method="dialog">
+        <img src="" alt="">
+        <input class="title" type="text" placeholder="Enter Title Name">
+        <input class="price" type="number" placeholder="Enter Price">
+        <select name="" id="">
+          <option value="">Choose Rating</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <input class="img-url" type="text" placeholder="Enter Image URL">
+
+        <button type="button" onclick="onCloseBookEditModal()">Cancel</button>
+        <button>Save</button>
+      </form>
+
+    </div>
+  </dialog>
+
   <dialog class="modal"></dialog>
   <dialog class="modal-alert modal-success"></dialog>
   <dialog class="modal-alert modal-error"></dialog>

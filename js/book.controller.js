@@ -6,6 +6,8 @@ const gQueryOptions = {
   page: { idx: 0, size: 3 }
 }
 
+var gBookToEdit
+
 function onInit() {
   readQueryParams()
   renderQueryParams()
@@ -47,23 +49,50 @@ function onRemoveBook(bookId) {
 }
 
 function onUpdateBook(bookId) {
-  const newPrice = prompt('Enter new book price:')
-  updatePrice(bookId, newPrice)
-  _showSucessModal('updated')
-  renderBooks()
+  const book = getBook(bookId)
+  gBookToEdit = book
+
+  const elForm = document.querySelector('.book-edit-modal form')
+
+  elForm.querySelector('.title').value = book.title
+  elForm.querySelector('.price').value = book.price
+  elForm.querySelector('select').value = book.rating
+  elForm.querySelector('.img-url').value = book.imgUrl
+
+  const elModal = document.querySelector('.book-edit-modal')
+  elModal.showModal()
+
+
+  // const newPrice = prompt('Enter new book price:')
+  // updatePrice(bookId, newPrice)
+  // _showSucessModal('updated')
+  // renderBooks()
 }
 
 function onAddBook() {
-  const bookName = prompt('Enter book name:')
-  const bookPrice = +prompt('Enter book price:')
-  const bookRating = +prompt('Enter rating 1-5:')
-  if (bookName.length && bookPrice > 0 && ((bookRating >= 1 && bookRating <= 5) || !bookRating)) {
-    addBook(bookName, bookPrice, bookRating)
-    _showSucessModal('added')
-    renderBooks()
+  const elModal = document.querySelector('.book-edit-modal')
+  elModal.showModal()
+}
+
+function onSaveBook() {
+  const elForm = document.querySelector('.book-edit-modal form')
+
+  const title = elForm.querySelector('.title').value
+  const price = +elForm.querySelector('.price').value
+  const rating = +elForm.querySelector('select').value
+  const imgUrl = elForm.querySelector('.img-url').value
+
+  if (gBookToEdit) {
+    updateBook(gBookToEdit.id, title, price, rating, imgUrl)
+    gBookToEdit = null
   } else {
-    _showErrorModal()
+    addBook(title, price, rating, imgUrl)
   }
+  renderBooks()
+}
+
+function onCloseBookEditModal() {
+  document.querySelector('.book-edit-modal').close()
 }
 
 function onSeeDetails(bookId) {
@@ -113,9 +142,13 @@ function onClearFilter() {
   const elRating = document.querySelector('.book-filter .min-rating')
   const elSortBy = document.querySelector('.sort-by select')
 
+  gQueryOptions.sortBy.elSortBy = 1
+  document.querySelector('.sort-by input[value="1"]').checked = true
+
   elInput.value = ''
   elRating.value = 0
   elSortBy.value = ''
+
 
   gQueryOptions.page.idx = 0
   setQueryParams()
@@ -204,11 +237,34 @@ function readQueryParams() {
     txt: queryParams.get('title') || '',
     minRating: queryParams.get('minRating') || 0
   }
+
+  if (queryParams.get('sortBy')) {
+    const prop = queryParams.get('sortBy')
+    const dir = queryParams.get('sortDir')
+    gQueryOptions.sortBy[prop] = dir
+  }
+
+  if (queryParams.get('pageIdx')) {
+    gQueryOptions.page.idx = +queryParams.get('pageIdx')
+    gQueryOptions.page.size = +queryParams.get('pageSize')
+  }
+  renderQueryParams()
 }
 
 function renderQueryParams() {
   document.querySelector('input[name="book-filter"').value = gQueryOptions.filterBy.txt
   document.querySelector('.min-rating').value = gQueryOptions.filterBy.minRating
+
+  const sortKeys = Object.keys(gQueryOptions.sortBy)
+  const sortBy = sortKeys[0]
+  const dir = gQueryOptions.sortBy[sortKeys[0]]
+
+  document.querySelector('.sort-by select').value = sortBy || ''
+  if (dir === 1) {
+    document.querySelector('.sort-by input[value="1"]').checked = true
+  } else if (dir === -1) {
+    document.querySelector('.sort-by input[value="-1"]').checked = true
+  }
 }
 
 function setQueryParams() {
@@ -216,6 +272,17 @@ function setQueryParams() {
 
   queryParams.set('title', gQueryOptions.filterBy.txt)
   queryParams.set('minRating', gQueryOptions.filterBy.minRating)
+
+  const sortKeys = Object.keys(gQueryOptions.sortBy)
+  if (sortKeys.length) {
+    queryParams.set('sortBy', sortKeys[0])
+    queryParams.set('sortDir', gQueryOptions.sortBy[sortKeys[0]])
+  }
+
+  if (gQueryOptions.page) {
+    queryParams.set('pageIdx', gQueryOptions.page.idx)
+    queryParams.set('pageSize', gQueryOptions.page.size)
+  }
 
   const newUrl =
     window.location.protocol + "//" + window.location.host + window.location.pathname + "?" + queryParams.toString()
