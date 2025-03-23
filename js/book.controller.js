@@ -88,6 +88,8 @@ function renderStats() {
   document.querySelector('.cheap-books-count').innerText = getCheapBooksCount()
 }
 
+//Filter & Sort
+
 function onFilterByTitle(titleTxt) {
   gQueryOptions.filterBy.txt = titleTxt
   renderBooks()
@@ -112,6 +114,21 @@ function onClearFilter() {
   setQueryParams()
   renderBooks()
 }
+
+function onSetSortBy() {
+  const elSortField = document.querySelector('.sort-by select')
+  const elSortDirection = document.querySelector('.sort-by input[name="sort-order"]:checked')
+
+  const sortField = elSortField.value
+  const sortDir = elSortDirection.value
+
+  gQueryOptions.sortBy = { [sortField]: sortDir }
+
+  renderBooks()
+  setQueryParams()
+}
+
+//Modals
 
 function _showSucessModal(msg) {
   const elSuccessModal = document.querySelector('.modal-success')
@@ -149,8 +166,6 @@ function readQueryParams() {
 
 function renderQueryParams() {
   document.querySelector('input[name="book-filter"').value = gQueryOptions.filterBy.txt
-  console.log(document.querySelector('.min-rating'))
-  console.log(document.querySelector('.min-rating').value)
   document.querySelector('.min-rating').value = gQueryOptions.filterBy.minRating
 }
 

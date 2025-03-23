@@ -7,12 +7,34 @@ var gFilterBy
 _createBooks()
 
 function getBooks(options) {
-  if (!options.filterBy.txt && !options.filterBy.minRating) return gBooks
 
-  var books = _filterBooks(options.filterBy)
+  const filterBy = options.filterBy
+  const sortBy = options.sortBy
+  const page = options.page
+
+  var books = _filterBooks(filterBy)
+
+  books = _sortBooks(books, sortBy)
 
   return books
-  // return gBooks.filter(book => book.title.toLowerCase().includes(gQueryOptions.filterBy.txt.toLowerCase()))
+}
+
+function _sortBooks(books, sortBy) {
+
+  if (sortBy.title) {
+    const sortDir = sortBy.title
+    return books.sort((b1, b2) => b1.title.localeCompare(b2.title) * sortDir)
+
+  } else if (sortBy.price) {
+    const sortDir = sortBy.price
+    return books.sort((b1, b2) => (b1.price - b2.price) * sortDir)
+
+  } else if (sortBy.rating) {
+    const sortDir = sortBy.rating
+    return books.sort((b1, b2) => (b1.rating - b2.rating) * sortDir)
+  }
+
+  return books
 }
 
 function _filterBooks(filterBy) {
