@@ -63,7 +63,8 @@ function onSeeDetails(bookId) {
                       <div class="grid-container">
                       <div class="img-container"><img class="modal-img" src="${bookDetails.imgUrl}"></div>
                       <h1 class="modal-title">${bookDetails.title}</h1>
-                      <h2 class="modal-price">Price: <span class="font-weight-normal">${bookDetails.price}</span>$</h2>
+                      <h2 class="modal-price">Price: <span class="font-weight-normal">$${Number(bookDetails.price).toFixed(2)}</span></h2>
+                      <h2 class="modal-rating">Rating: <span class="font-weight-normal">${bookDetails.rating === 0 ? 'Unrated' : bookDetails.rating + '/5'}</span></h2>
                       <h3 class="modal-id">id: <span class="font-weight-normal">${bookDetails.id}</span></h3>
                       </div>`
   modal.showModal()

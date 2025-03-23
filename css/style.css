@@ -154,46 +154,15 @@ tr:nth-child(even) {
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 2fr repeat(2, 1fr);
+  grid-template-rows: 2fr repeat(3, 1fr);
   grid-template-areas:
     "img title"
     "img  price"
+    "img  rating"
     "img id";
   gap: 10px;
   width: 100%;
   height: 100%;
-}
-
-.modal-alert {
-  border-radius: 1rem;
-  width: min(35%, 350px);
-  border: 2px solid #fff;
-  padding: .5rem;
-  color: #333;
-
-}
-
-.modal-success {
-  color: var(--dark-green);
-}
-
-.modal-alert h1 {
-  font-size: 1rem;
-}
-
-.modal-error {
-  color: var(--dark-brown);
-}
-
-.modal-close {
-  position: absolute;
-  right: -9px;
-  top: -9px;
-  font-size: 1rem;
-  border-radius: 50%;
-  cursor: pointer;
-  background-color: white;
-  border: 1px solid #555;
 }
 
 .modal h1,
@@ -223,8 +192,44 @@ tr:nth-child(even) {
   place-self: start start;
 }
 
+.modal-rating{
+  grid-area: rating;
+}
+
 .modal-id {
   grid-area: id;
+}
+
+.modal-close {
+  position: absolute;
+  right: -9px;
+  top: -9px;
+  font-size: 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid #555;
+}
+
+.modal-alert {
+  border-radius: 1rem;
+  width: min(35%, 350px);
+  border: 2px solid #fff;
+  padding: .5rem;
+  color: #333;
+
+}
+
+.modal-success {
+  color: var(--dark-green);
+}
+
+.modal-alert h1 {
+  font-size: 1rem;
+}
+
+.modal-error {
+  color: var(--dark-brown);
 }
 
 footer{
